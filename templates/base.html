@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{% block title %}{% endblock %}</title>
+  <link href="/static/css/dblog.css" rel="stylesheet" type="text/css" />
+</head>
+            
+<body>
+  <div class="container">
+    <div class="header">
+        <div id="top">
+          <a href="/blog/"><img src="/static/img/LOGO.png" alt="LOGO" name="logo" width="180" height="60" id="logo" /></a>
+          <div id="nav_div">
+            <ul id="top_nav">
+              <li><a href="/" class="a_normal">首页</a></li>
+              <li><a href="/rss/" class="a_normal">订阅</a></li>
+              <li><a href="/about/" class="a_normal">关于</a></li>
+            </ul>
+          </div>
+        </div>
+    <!-- end .header --></div>
+            
+    <div class="content_body">
+      {% block content_body %}{% endblock %}
+    </div>
+            
+    <div class="footer">
+      <div id="footer_logo"></div>
+      <div id="siteinfo">&copy; 2007 - 2012 DannyWork Project</div>
+    <!-- end .footer --></div>
+  <!-- end .container --></div>
+</body>
+</html>
