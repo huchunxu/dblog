@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Tag, Author, Article, Classification
+from blog.models import Tag, Author, Article
 
 
 class AuthorAdmin(admin.ModelAdmin):
@@ -8,7 +8,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('caption', 'subcaption', 'classification', 'author', 'publish_time', 'update_time')
+    list_display = ('caption', 'author', 'publish_time', 'update_time')
     list_filter = ('publish_time',)
     date_hierarchy = 'publish_time'
     ordering = ('-publish_time',)
@@ -18,4 +18,3 @@ class ArticleAdmin(admin.ModelAdmin):
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Tag)
-admin.site.register(Classification)

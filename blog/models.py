@@ -9,13 +9,6 @@ class Tag(models.Model):
         return self.tag_name
 
 
-class Classification(models.Model):
-    name = models.CharField(max_length=20)
-            
-    def __unicode__(self):
-        return self.name
-
-
 class Author(models.Model):
     name = models.CharField(max_length=30)
     email = models.EmailField(blank=True)
@@ -27,10 +20,8 @@ class Author(models.Model):
 
 class Article(models.Model):
     caption = models.CharField(max_length=30)
-    subcaption = models.CharField(max_length=50, blank=True)
     publish_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(Author)
-    classification = models.ForeignKey(Classification)
     tags = models.ManyToManyField(Tag, blank=True)
     content = models.TextField()
