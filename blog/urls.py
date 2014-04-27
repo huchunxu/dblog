@@ -7,7 +7,7 @@ from django.conf.urls import *
 urlpatterns = patterns(('blog.views'),
     url(r'^bloglist/$',        'blog_list',     name='blog_list'),
     url(r'^(?P<id>\d+)/$',     'blog_show',     name='blog_show'),
-    url(r'^search',            'blog_list',     name='blog_search'),
+    url(r'^search/$',            'blog_search',     name='blog_search'),
     url(r'^add/$',               'blog_add',     name='blog_add'),
     url(r'^(?P<id>\w+)/update/$', 'blog_update', name='blog_update'),
     url(r'^(?P<id>\w+)/del/$', 'blog_del',      name='blog_del'),

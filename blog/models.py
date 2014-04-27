@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Tag(models.Model):
+    """docstring for Tags"""
     tag_name = models.CharField(max_length=20)
     create_time = models.DateTimeField(auto_now_add=True)
             
@@ -10,6 +11,7 @@ class Tag(models.Model):
 
 
 class Author(models.Model):
+    """docstring for Author"""
     name = models.CharField(max_length=30)
     email = models.EmailField(blank=True)
     website = models.URLField(blank=True)
@@ -19,6 +21,7 @@ class Author(models.Model):
 
 
 class Article(models.Model):
+    """docstring for Article"""
     caption = models.CharField(max_length=30)
     publish_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)

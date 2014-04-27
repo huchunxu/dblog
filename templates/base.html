@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/style.css">
+    <link type="text/css"  rel="stylesheet" href="/static/css/code.css">
     {# <link rel="stylesheet" href="/static/css/bootstrap-responsive.css">  #}
     <script src="/static/js/modernizr.js"></script>
     <script src="/static/js/jquery.js"></script>
@@ -65,7 +66,11 @@
             {% endblock %}
             {% block footer %}
                 {# 任何每个页面都可能修改的文本区域的页脚 #}
-                <p>Thanks for visiting my site! </p>
+                <div id="footer">
+                    <div class="container">
+                        <p class="muted credit">Copy Right © hcx 2014 , Power by Django</p>
+                    </div>
+                </div>
             {% endblock %}
         {% endblock %}
     </div>

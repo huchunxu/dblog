@@ -1,6 +1,6 @@
 {% extends "blog_base.html" %}
 
-{% block title %} 发布文字 {% endblock %}
+{% block title %} 新博客 {% endblock %}
 {% block otherscript %}
     <script type="text/javascript">
         $(document).ready(function(){
@@ -48,8 +48,8 @@
         {{ tag.tag_name }}
     </div>
     <div class="form-actions">
-        <input class="btn btn-primary" type="submit" value="save and add">
-        <a href="#" class="btn">Save as Draft</a>
+        <input class="btn btn-primary" type="submit" value="发表文章">
+        <a href="#" class="btn">保存为草稿</a>
     </div>
 </form>
 {% endblock %}
