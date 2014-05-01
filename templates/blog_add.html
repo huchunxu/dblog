@@ -21,7 +21,7 @@
 <form action="" method="post">
     {% csrf_token %}
     <div class="field">
-        <label for="id_caption">Title: </label>
+        <label for="id_caption">文章标题: </label>
         {% if form.caption.errors %}
         <div class="alert alert-error">
             {{ form.caption.errors }}
@@ -30,7 +30,7 @@
         {{ form.caption }}
     </div>
     <div class="field">
-        <label for="id_content">Content: </label>
+        <label for="id_content">文章内容: </label>
         {% if form.content.errors %}
         <div class="alert alert-error">
             {{ form.content.errors }}
@@ -39,7 +39,7 @@
         {{ form.content }}
     </div>
     <div class="field">
-        <label for="id_tag">tags</label>
+        <label for="id_tag">文章标签</label>
         {% if tag.tag_name.errors %}
         <div class="alert alert-error">
             {{ tag.tag_name.errors }}

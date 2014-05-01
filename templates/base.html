@@ -56,8 +56,6 @@
                         </div>
                         <div class="span2 offset1">
                             {% block aside %}
-                                {% block addblog %}{% endblock %}
-                                {% block search %}{% endblock %}
                                 {% block tags %}{% endblock %}
                             {% endblock %}
                         </div>
@@ -75,6 +73,15 @@
         {% endblock %}
     </div>
     <script src="/static/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript"> /* TOP按钮 返回顶部 锚点 */
+        function form_top(){
+            document.write('<div id="form_top"><a href="#top" title="回到顶部"><div class="top_img"></div></a></div>')
+            }
+        form_top();
+    </script>
+
+
 </body>
 
 </html>

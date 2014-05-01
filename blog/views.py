@@ -38,7 +38,7 @@ def blog_show(request, id=''):
 def blog_filter(request, id=''):
     tags = Tag.objects.all()
     tag = Tag.objects.get(id=id)
-    blogs = tag.article_set.all()
+    blogs = tag.article_set.all().order_by('-publish_time')
     return render_to_response("blog_filter.html", {"blogs": blogs, "tag": tag, "tags": tags})
 
 
@@ -51,7 +51,7 @@ def blog_search(request):
     tags = Tag.objects.all()
     if 'search' in request.GET:
         search = request.GET['search']
-        blogs = Article.objects.filter(caption__icontains=search)
+        blogs = Article.objects.filter(caption__icontains=search).order_by('-publish_time')
         return render_to_response('blog_filter.html',
             {"blogs": blogs, "tags": tags}, context_instance=RequestContext(request))
     else:
@@ -68,16 +68,19 @@ def blog_add(request):
             cd = form.cleaned_data
             cdtag = tag.cleaned_data
             tagname = cdtag['tag_name']
-            for taglist in tagname.split(',| '):
-                Tag.objects.get_or_create(tag_name=taglist.strip())
+            tagnamelist = re.split(',| ', tagname)
+            for taglist in tagnamelist:
+                if taglist != '':
+                    Tag.objects.get_or_create(tag_name=taglist.strip())
             title = cd['caption']
             author = Author.objects.get(id=1)
             content = cd['content']
             blog = Article(caption=title, author=author, content=content)
             blog.save()
-            for taglist in tagname.split():
-                blog.tags.add(Tag.objects.get(tag_name=taglist.strip()))
-                blog.save()
+            for taglist in tagnamelist:
+                if taglist != '':
+                    blog.tags.add(Tag.objects.get(tag_name=taglist.strip()))
+                    blog.save()
             id = Article.objects.order_by('-id')[0].id
             return HttpResponseRedirect('/blog/%s' % id)
     else:
