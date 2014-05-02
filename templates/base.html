@@ -6,24 +6,26 @@
         {% block title %}{% endblock %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <link type="text/css"  rel="stylesheet" href="/static/css/code.css">
     {# <link rel="stylesheet" href="/static/css/bootstrap-responsive.css">  #}
     <script src="/static/js/modernizr.js"></script>
     <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/jquery.pin.js"></script>
+
     <script type="text/javascript" src="/static/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({
         selector : "textarea",
         theme : "modern",
-        width: '780px',
+        width: '630px',
         plugins: [
             "advlist autolink lists link image charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars code fullscreen",
             "insertdatetime media nonbreaking save table contextmenu directionality",
-            "emoticons template paste textcolor "
+            "emoticons template paste textcolor"
         ],
         menubar: false,
         toolbar_items_size: 'small',
@@ -61,8 +63,6 @@
 </head>
 
 <body>
-<div>
-</div>
     {% block body %}
         {% block header %}
             {# 任何每个页面都可能修改的文本区域的页面 #}
@@ -71,50 +71,70 @@
             {% endblock %}
         {% endblock %}
 
-    <div class="container">
-        {% block content %}
-            {# 这个区块用来放置页面正文内容. 任何页面正文内容都可能不一样. 它不 包含任何站点导航, 信息头, 页脚, 或其它任何属于 base 模板的东东. #}
+        <div id="form_top"></div>
+        <div id="wrap">
+        <div class="container">
+            {% block content %}
+                {# 这个区块用来放置页面正文内容. 任何页面正文内容都可能不一样. 它不 包含任何站点导航, 信息头, 页脚, 或其它任何属于 base 模板的东东. #}
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="span9">
+                            <!--Body content-->
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                {% block article %}
+                                    {% block article_title %}
+                                        {% comment %}
+                                        用来指定 content 区块的 "title". 比如 blog 的标题.
+                                        也可以用来 包含 content 内的导航 (译注: 比如提纲), 或其它类似的东东.
+                                        大致都是些 页面中并非主要内容的东东.
+                                        我不知道这个区块是否应该放到 content tag 内, 并且对应于前面建议的 content tag,
+                                        是不是还需要一个 main_content 区块.
+                                        {% block [section]_menu %} {% block page_menu %}
+                                        这是对应于之前建议的 menu 区块. 用来导航一个章节或页面.
+                                        {% endcomment %}
+                                    {% endblock %}
+                                    {% block article_content %}{% endblock %}
+                                {% endblock %}
 
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span9">
-                        {% block article %}
-                            {% block article_title %}
-                                {% comment %}
-                                用来指定 content 区块的 "title". 比如 blog 的标题.
-                                也可以用来 包含 content 内的导航 (译注: 比如提纲), 或其它类似的东东.
-                                大致都是些 页面中并非主要内容的东东.
-                                我不知道这个区块是否应该放到 content tag 内, 并且对应于前面建议的 content tag,
-                                是不是还需要一个 main_content 区块.
-                                {% block [section]_menu %} {% block page_menu %}
-                                这是对应于之前建议的 menu 区块. 用来导航一个章节或页面.
-                                {% endcomment %}
-                            {% endblock %}
-                            {% block article_content %}{% endblock %}
-                        {% endblock %}
-
-                        {% block article_menu %} {% endblock %}
-                        {% block comments %} {% endblock %}
+                                {% block article_menu %} {% endblock %}
+                                {% block comments %} {% endblock %}
+                                </div> <!-- panel-body -->
+                            </div> <!-- panel panle-default -->
                         </div>
-                        <div class="span2 offset1">
-                            {% block aside %}
-                                {% block tags %}{% endblock %}
-                            {% endblock %}
+                        <div class="span3">
+                            <div class="pin">
+                            <!--Sidebar content-->
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                         {% block aside %}
+                                            {% block tags %}{% endblock %}
+                                        {% endblock %}
+                                    </div> <!-- panel-body -->
+                                </div> <!-- panel panle-default -->
+                            </div>
                         </div>
-                    </div>
-                </div>
-            {% endblock %}
-            {% block footer %}
-                {# 任何每个页面都可能修改的文本区域的页脚 #}
-                <div id="footer">
-                    <div class="container">
-                        <p class="muted credit">Copy Right © hcx 2014 , Power by Django</p>
                     </div>
                 </div>
             {% endblock %}
         {% endblock %}
     </div>
+    </div>
+
+    {% block footer %}
+        {# 任何每个页面都可能修改的文本区域的页脚 #}
+        <div id="footer">
+            <div class="container">
+                <p class="muted credit">Copy Right © hcx 2014 , Power by Django</p>
+            </div>
+        </div>
+    {% endblock %}
+
     <script src="/static/js/bootstrap.min.js"></script>
+
+    <script>
+      $(".pin").pin({containerSelector: ".container", minWidth: 940}); /*.aside */
+    </script>
 
     <script type="text/javascript"> /* TOP按钮 返回顶部 锚点 */
         function form_top(){
@@ -122,7 +142,6 @@
             }
         form_top();
     </script>
-
 
 </body>
 

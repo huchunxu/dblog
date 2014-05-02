@@ -49,7 +49,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" role="button" data-toggle="modal" data-target="#myModal">
                             <span class="new-wrapper">
                                 <i class="nav-people"></i>
                                 <i class="nav-new"></i>
@@ -81,30 +81,35 @@
                         </li>
                         <li class="divider-vertical"></li>
                     </ul>
-                    <a class="btn btn-info btn-tweet" href="#myModal" role="button" data-toggle="modal">
-                        <i class="nav-tweet">
-                            <span class="hide">撰写新推文</span>
-                        </i>
-                        留言
+                    <a class="btn" href="https://github.com/huchunxu" role="button">
+                        <img src="/static/img/github.png" width="24" height="23" />
+                        GitHub
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header twitter-modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Modal header</h3>
-        </div>
-        <form action="" method="post">{% csrf_token %}
-        <div class="modal-body twitter-modal-body">
-            <textarea name="twitter" class="twitter" id="twitter" required="required"></textarea>
-        </div>
-        <div class="modal-footer twitter-modal-footer">
-            <button class="btn"  data-dismiss="modal" aria-hidden="true">Close</button>
-            <button id="send" class="btn btn-primary" type="submit" name="submit" >Save changes</button>
-        </div>
-        </form>
-    </div>
+    <!-- 联系弹出框 -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">联系</h4>
+                </div>
+                <div class="modal-body">
+                    <address>
+                        <strong>Email:</strong><br>
+                        <a href="mailto:#">hcx196@qq.com</a>
+                    </address>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     {% endblock %}
 {% endblock %}

@@ -10,6 +10,15 @@ class Tag(models.Model):
         return self.tag_name
 
 
+class Category(models.Model):
+    """docstring for Category"""
+    category_name = models.CharField(max_length=20)
+    create_time = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.category_name
+
+
 class Author(models.Model):
     """docstring for Author"""
     name = models.CharField(max_length=30)
@@ -28,3 +37,5 @@ class Article(models.Model):
     author = models.ForeignKey(Author)
     tags = models.ManyToManyField(Tag, blank=True)
     content = models.TextField()
+    category = models.ForeignKey(Category, blank=True)
+

@@ -1,7 +1,7 @@
 {% extends "blog_base.html" %}
 {% load comments %}
 
-{% block title %} tag search: {{ tag.tag_name }} {% endblock %}
+{% block title %} Categoty search: {{ category.category_name }} {% endblock %}
 
 {% block article %}
 <article class='content-main'>
@@ -35,14 +35,17 @@
                 <p>进<strong>一步</strong>有一步的<strong>欢喜</strong>。</p>
                 <small>胡适</small>
             </blockquote>
-            {% block tags %}
-                <blockquote>
-                    <img src="/static/img/tags.png" alt="..."> <strong style=" font-size: 20px;">标签</strong></span><br>
-                    {% for tag in tags %}
-                        <a href="{% url blog_filter tag.id %}" class="btn btn-small btn-info">{{ tag }}</a>
+            <blockquote>
+                <img src="/static/img/category.png" alt="..."> <strong style=" font-size: 20px;">分类</strong></span>
+                <table class="table table-hover table-condensed">
+                 <tbody>
+                    {% for category in categories %}
+                        <tr class="active"></tr>
+                        <td><a href="{% url blog_category category.id %}"><strong style="color:#009ACD;">{{ category }}</strong></a></td>
                     {% endfor %}
-                </blockquote>
-            {% endblock %}
+                 </tbody>
+                </table>
+            </blockquote>
         </div>
     </div>
 {% endblock %}

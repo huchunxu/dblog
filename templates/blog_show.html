@@ -11,7 +11,7 @@
     {% endblock %}
     <p class="muted">
         <i class="icon-user"></i><small> {{ blog.author }}</small>
-        <i class="icon-time"></i><small> {{ blog.publish_time }}</small>
+        <i class="icon-time"></i><small> {{ blog.publish_time|date:"m-d Y H:m:s" }}</small>
     </p>
     <hr class="soften">
     <section>

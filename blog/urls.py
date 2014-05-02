@@ -12,5 +12,6 @@ urlpatterns = patterns(('blog.views'),
     url(r'^(?P<id>\w+)/update/$', 'blog_update', name='blog_update'),
     url(r'^(?P<id>\w+)/del/$', 'blog_del',      name='blog_del'),
     url(r'^tag/(?P<id>\d+)/$', 'blog_filter',   name='blog_filter'),
+    url(r'^category/(?P<id>\d+)/$', 'blog_category',   name='blog_category'),
     url(r'^(?P<id>\d+)/commentshow/$', 'blog_show_comment', name='comment_show'),
 )

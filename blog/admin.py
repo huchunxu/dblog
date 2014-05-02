@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Tag, Author, Article
+from blog.models import Tag, Author, Article, Category
 
 
 class AuthorAdmin(admin.ModelAdmin):
@@ -14,6 +14,8 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = ('-publish_time',)
     filter_horizontal = ('tags',)
 
+
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Tag)
+admin.site.register(Category)
