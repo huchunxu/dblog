@@ -1,0 +1,11 @@
+﻿<pre class="brush: csharp;">
+public IEnumerator<String> GetEnumerator()// 注意：返回什么，泛型就为什么类型
+{
+    for (int i = 0; i&lt;arr_Course.Length; i++)
+    {
+        Course course = arr_Course[i];
+        yield return "选修：" + course.Name;
+        yield return Environment.NewLine;// 两个 yield return
+    }
+}
+</pre>

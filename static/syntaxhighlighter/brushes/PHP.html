@@ -1,0 +1,18 @@
+<pre class="brush: php;">
+<?php require_once('http://www.cnblogs.com/conn.php'); ?>
+<?php
+$hy_id=$_GET['id'];
+$action=$_GET['action'];
+if ($action=='yes'){
+$sql="update hybiao set hy_zhuangtai='Ëø¶¨' where hy_id='$id'";
+$query=mysql_query($sql,$connec);
+echo("<script type='text/javascript'>          location.href = 'UserManage.php';</script>");
+}
+else{
+$sql="update hybiao set hy_zhuangtai='Õý³£' where hy_id='$id'";
+$query=mysql_query($sql,$connec);
+echo("<script type='text/javascript'>          location.href = 'UserManage.php';</script>");
+}
+mysql_close();
+?>
+</pre>

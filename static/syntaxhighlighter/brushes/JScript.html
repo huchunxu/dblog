@@ -1,0 +1,9 @@
+﻿<pre  class="brush: jscript;">
+        $(function () {
+            $("input[name=article_support]").live('click', function () {
+                $("#tbCommentBody").val("文章不错，支持一下 (*^_^*)  ");
+                $("#btn_comment_submit").trigger('click');
+                $("html,body").animate({ scrollTop: $("#divCommentShow").offset().top }, "slow"); 
+            });
+        });
+</pre>

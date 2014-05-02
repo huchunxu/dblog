@@ -1,0 +1,115 @@
+{% extends "blog_base.html" %}
+{% load comments %}
+{% load gravatar %}
+
+{% block title %} {{ blog.caption }} {% endblock %}
+
+{% block article %} 
+<article class="content-main">
+    {% block article_title %}
+        <h2>{{ blog.caption }}</h2>
+    {% endblock %}
+    <p class="muted">
+        <i class="icon-user"></i><small> {{ blog.author }}</small>
+        <i class="icon-time"></i><small> {{ blog.publish_time }}</small>
+    </p>
+    <hr class="soften">
+    <section>
+        <div class="blog-content">
+            {% load markup %}
+            {% block article_content %}
+                {{ blog.content|markdown:"codehilite" }}
+            {% endblock %}
+        </div>
+    </section>
+    <section>
+        <div class="row-fluid post-info">
+        <div class="span3">
+            <p>
+                <i class="icon-tag"></i>
+                {% for tag in blog.tags.all %}
+                     <small class="muted"> {{ tag }} </small>
+                {% endfor %}
+            </p>
+        </div>
+        <div class="span2 offset7">
+            <a href="{% url blog_del blog.id %}" title="delete"><i class="icon-trash"></i></a>
+            <a href="{% url blog_update blog.id %}" title="edit"><i class="icon-edit"></i></a>
+            {% get_comment_count for blog as comment_count %}
+            <a href="#cmt" title="comment"><i class=" icon-comment"></i>{{ comment_count }}</a>
+        </div>
+    </div>
+    <hr class="soften">
+    {% load duoshuo_tags %}
+    {% duoshuo_comments 'hcx' %}
+    </section>
+</article>
+{% endblock %}
+
+
+
+
+{#{% block comments %}#}
+{#<article id="cmt">#}
+{#    {% get_comment_count for blog as comment_count %}#}
+{#        <h4 class="muted comtop"> 评论（{{ comment_count }}） </h4>#}
+{#        <hr class="soften">#}
+{#    {% get_comment_list for blog as blog_com %}#}
+{#    {% for comment in blog_com %}#}
+{#        <div class="container-fluid none-padding">#}
+{#            <div class="row-fluid">#}
+{#                <div class="span1">#}
+{#                <img src="/static/img/defaultavatar.png" width="42" height="42" />#}
+{#                </div>#}
+{#                <div class="span10">#}
+{#                <p class="muted"><small>{{ comment.user_name }}  </small><small>{{ comment.submit_date|date:"F,j,Y" }}</small></p>#}
+{#                {{ comment.comment|markdown:'safe,codehilite' }}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <hr class="soften">#}
+{#    {% endfor %}#}
+{#</article>#}
+{##}
+{#<article >#}
+{#    {% get_comment_form for blog as blog_form %}#}
+{#        <div id="comment_form">#}
+{#            <h4 class="muted comtop">新评论</h4>#}
+{#            <form class="form-horizontal" action="{% comment_form_target %}" method="post">#}
+{#                <fieldset>#}
+{#                {% csrf_token %}#}
+{#                {{ blog_form.object_pk }}#}
+{#                {{ blog_form.content_type }}#}
+{#                {{ blog_form.timestamp }}#}
+{#                {{ blog_form.site }}#}
+{#                {{ blog_form.submit_date }}#}
+{#                {{ blog_form.security_hash }}#}
+{#                <div class="control-group">#}
+{#                    <label class="control-label" for="id_name">用户名: </label>#}
+{#                    <div class="controls">#}
+{#                        <input type="text" id="id_name" class="input-xlarge" name="name" placeholder="请输入您的用户名" required="required">#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="control-group">#}
+{#                    <label class="control-label" for="id_email">E-mail: </label>#}
+{#                    <div class="controls">#}
+{#                        <input class="input-xlarge" id="id_email" type="email" name="email" placeholder="请输入您的邮箱地址" required="required">#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="control-group">#}
+{#                    <label class="control-label" for="id_comment">评论内容: </label>#}
+{#                    <div class="controls">#}
+{#                        <textarea class="input-xlarge comment" id="id_comment" name="comment" placeholder="请输入评论内容" required="required"></textarea>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <p style="display:none;"><label for="id_honeypot">如果你在该字段中输入任何内容，那么你的评论就会被视为垃圾评论。</label> <input type="text" name="honeypot" id="id_honeypot"></p>#}
+{#                <div class="form-actions">#}
+{#                    <input class="btn btn-info" type="submit" name="submit" value="提交">#}
+                    {# <input class="btn btn-info" type="submit" name="preview" value="Preview"> #}
+{#                    <input type='hidden' name='next' value='{% url comment_show blog.id %}'/>#}
+{#                </div>#}
+{#                </fieldset>#}
+{#            </form>#}
+{#        </div>#}
+{#</article>#}
+{#{% endblock %}#}

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>how_to_use_syntaxhighlighter</title>
+	<script type="text/javascript" src="src/shCore.js"></script>
+	<script type="text/javascript" src="scripts/shBrushCSharp.js"></script>
+	<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body style="background: white; font-family: Helvetica">
+
+<br />
+<h1>&lt;script>方式（‘&lt;’无需进行转义）</h1>
+<script type="syntaxhighlighter" class="brush: csharp;">
+<![CDATA[
+public IEnumerator<String> GetEnumerator()// 注意：返回什么，泛型就为什么类型
+{
+    for (int i = 0; i<arr_Course.Length; i++)
+    {
+        Course course = arr_Course[i];
+        yield return "选修：" + course.Name;
+        yield return Environment.NewLine;// 两个 yield return
+    }
+}
+]]>
+</script>
+
+<h1>&lt;pre>方式（‘&lt;’进行过转义）</h1>
+<pre class="brush: csharp;">
+public IEnumerator<String> GetEnumerator()// 注意：返回什么，泛型就为什么类型
+{
+    for (int i = 0; i&lt;arr_Course.Length; i++)
+    {
+        Course course = arr_Course[i];
+        yield return "选修：" + course.Name;
+        yield return Environment.NewLine;// 两个 yield return
+    }
+}
+</pre>
+
+<br />
+<h1>&lt;pre>方式（‘&lt;’未进行转义）</h1>
+<pre class="brush: csharp;">
+public IEnumerator<String> GetEnumerator()// 注意：返回什么，泛型就为什么类型
+{
+    for (int i = 0; i<arr_Course.Length; i++)
+    {
+        Course course = arr_Course[i];
+        yield return "选修：" + course.Name;
+        yield return Environment.NewLine;// 两个 yield return
+    }
+}
+</pre>
+<br />
+
+
+
+<h1>前面&lt;pre>方式，没有对‘&lt;’进行转义，导致后面的html标签都以字符串的形式解析）</h1>
+<script type="syntaxhighlighter" class="brush: csharp;">
+<![CDATA[
+public IEnumerator<String> GetEnumerator()// 注意：返回什么，泛型就为什么类型
+{
+    for (int i = 0; i<arr_Course.Length; i++)
+    {
+        Course course = arr_Course[i];
+        yield return "选修：" + course.Name;
+        yield return Environment.NewLine;// 两个 yield return
+    }
+}
+]]>
+</script>
+</html>

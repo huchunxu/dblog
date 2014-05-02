@@ -14,7 +14,6 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = ('-publish_time',)
     filter_horizontal = ('tags',)
 
-
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Tag)

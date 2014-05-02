@@ -13,6 +13,46 @@
     {# <link rel="stylesheet" href="/static/css/bootstrap-responsive.css">  #}
     <script src="/static/js/modernizr.js"></script>
     <script src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+        selector : "textarea",
+        theme : "modern",
+        width: '780px',
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor "
+        ],
+        menubar: false,
+        toolbar_items_size: 'small',
+        language:'zh_CN',
+        toolbar1: "undo redo | bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright | bullist blockquote link unlink code | pagebreak preview fullscreen | fontselect fontsizeselect",
+        content_css : '/static/tinymce/skins/content.min.css'
+        });
+    </script>
+
+    <link href="/static/syntaxhighlighter/styles/shCore.css" type="text/css" rel="stylesheet"/>
+    <link href="/static/syntaxhighlighter/styles/shThemeDjango.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushPython.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushSql.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushJava.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushCss.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushCpp.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushPerl.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushBash.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushCSharp.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shBrushPerl.js"></script>
+    <script type="text/javascript" src="/static/syntaxhighlighter/scripts/shCore.js"></script>
+    <script  type = "text/javascript">
+        SyntaxHighlighter.all();
+    </script>
+
     {% block extra_head %}
             {% comment %}
                 我认为这是个非常有用的区块, 很多人已经以某种方式在使用了. 很多页面经常需要在 HTML 文档头添加些信息, 比如 RSS 源, Javascript, CSS, 以及别的应该放在文档头的信息. 你可以, 也很可能将会, 定义另外专门的区块 (比如前面的 title 区块) 来添加文档头的其它部分的信息.
@@ -21,6 +61,8 @@
 </head>
 
 <body>
+<div>
+</div>
     {% block body %}
         {% block header %}
             {# 任何每个页面都可能修改的文本区域的页面 #}
