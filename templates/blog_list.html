@@ -8,17 +8,21 @@
     {% for blog in blogs %}
         <h3><a href="{% url blog_show blog.id %}">{{ blog.caption }}</a></h3>
         <p class="muted">
-            {% for tag in blog.tags.all %}
-                <i class="icon-tag"></i>  <small>{{ tag }}</small>
-            {% endfor %}
+            <i class="icon-user"></i><small> {{ blog.author }}</small>
+            <i class="icon-time"></i><small> {{ blog.publish_time|date:"m-d Y H:m:s" }}</small>
+            <i class="icon-briefcase"></i>  <small>{{ blog.category }}</small>
         </p>
         {% load markup %}
-        <div>{{ blog.content|truncatechars:200|markdown:'codehilite' }} </div>
+        <div>{{ blog.content|truncatechars:400|markdown:'codehilite' }} </div>
         <h5><a href="{% url blog_show blog.id %}"> 阅读全文 >></a></h5>
 
         <div class="row-fluid">
             <div class="span3">
-                <p class="muted"><i class="icon-time"></i><small> {{ blog.publish_time|date:"m-d Y H:m:s" }}</small></p>
+                <p class="muted">
+                    {% for tag in blog.tags.all %}
+                        <i class="icon-tag"></i>  <small>{{ tag }}</small>
+                    {% endfor %}
+                </p>
             </div>
             <div class="span2 offset7">
                 {% get_comment_count for blog as comment_count %}

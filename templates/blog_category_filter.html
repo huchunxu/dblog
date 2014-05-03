@@ -36,12 +36,10 @@
             <blockquote>
                 <img src="/static/img/category.png" alt="..."> <strong style=" font-size: 20px;">分类</strong></span>
                 <table class="table table-hover table-condensed">
-                 <tbody>
-                    {% for category in categories %}
-                        <tr class="active"></tr>
-                        <td><a href="{% url blog_category category.id %}"><strong style="color:#009ACD;">{{ category }}</strong></a></td>
-                    {% endfor %}
-                 </tbody>
+                <tbody>
+                    <tr class="active"></tr>
+                    <td><a href="{% url blog_category category.id %}"><strong style="color:#009ACD;">{{ category }}</strong></a></td>
+                </tbody>
                 </table>
             </blockquote>
         </div>

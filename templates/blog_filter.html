@@ -8,10 +8,12 @@
     {% for blog in blogs %}
         <h3><a href="{% url blog_show blog.id %}">{{ blog.caption }}</a></h3>
         <div class="row-fluid">
-            <div class="span3">
-                <p class="muted"><i class="icon-time"></i><small> {{ blog.publish_time|date:"m-d Y H:m:s"  }}</small></p>
+            <div class="span6">
+                <p class="muted">
+                    <i class="icon-time"></i><small> {{ blog.publish_time|date:"m-d Y H:m:s"  }}</small>
+                </p>
             </div>
-            <div class="span2 offset7">
+            <div class="span2 offset4">
                 {% get_comment_count for blog as comment_count %}
                 <a href="{% url blog_show blog.id %}#cmt" title="comment"><i class=" icon-comment"></i>{{ comment_count }}</a>
             </div>
@@ -36,8 +38,10 @@
             {% block tags %}
                 <blockquote>
                     <img src="/static/img/tags.png" alt="..."> <strong style=" font-size: 20px;">标签</strong></span><br>
-                    {% for tag in tags %}
-                        <a href="{% url blog_filter tag.id %}" class="btn btn-small btn-info">{{ tag }}</a>
+                    {% for blog in blogs %}
+                        {% for tag in blog.tags.all %}
+                            <a href="{% url blog_filter tag.id %}" class="btn btn-small btn-info">{{ tag }}</a>
+                        {% endfor %}
                     {% endfor %}
                 </blockquote>
             {% endblock %}

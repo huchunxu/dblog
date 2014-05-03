@@ -8,7 +8,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('caption', 'author', 'publish_time', 'update_time')
+    list_display = ('caption', 'id', 'author', 'publish_time', 'update_time')
     list_filter = ('publish_time',)
     date_hierarchy = 'publish_time'
     ordering = ('-publish_time',)
