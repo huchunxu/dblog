@@ -1,0 +1,25 @@
+<ul class="pager">
+    <div class="pagination pagination-centered">
+        <ul>
+            {% if blogs.has_previous %}
+                <li><a href="?page={{ blogs.previous_page_number }}">前一页</a></li>
+            {% else %}
+                <li class="active"><a>前一页</a></li>
+            {% endif %}
+
+            {% for p in blogs.paginator.page_range %}
+                {% ifequal p blogs.number %}
+                    <li class="active"><a>{{p}}</a></li>
+                {% else %}
+                    <li><a href="?page={{p}}">{{p}}</a><li>
+                {% endifequal %}
+            {% endfor %}
+
+            {% if blogs.has_next %}
+                <li><a href="?page={{ blogs.next_page_number }}">后一页</a></li>
+            {% else %}
+                <li class="active"> <a>后一页</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</ul>

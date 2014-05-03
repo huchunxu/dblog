@@ -7,7 +7,7 @@ class Tag(models.Model):
     """docstring for Tags"""
     tag_name = models.CharField(max_length=20, verbose_name=u'标签名')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name=u'创建时间')
-            
+
     def __unicode__(self):
         return self.tag_name
 
@@ -26,7 +26,7 @@ class Author(models.Model):
     name = models.CharField(max_length=30, verbose_name=u'作者名')
     email = models.EmailField(blank=True, verbose_name=u'邮箱')
     website = models.URLField(blank=True, verbose_name=u'个人网站')
-            
+
     def __unicode__(self):
         return u'%s' % (self.name)
 

@@ -2,12 +2,23 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import Http404, HttpResponseRedirect
 from blog.models import Article, Tag, Author, Category
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 
 
 def blog_list(request):
-    blogs = Article.objects.all().order_by('-publish_time')
+    blog_list = Article.objects.all().order_by('-publish_time')
     tags = Tag.objects.all()
     categories = Category.objects.all()
+
+    paginator = Paginator(blog_list, 4)
+    page = request.GET.get('page')
+    try:
+        blogs = paginator.page(page)
+    except PageNotAnInteger:
+        blogs = paginator.page(1)
+    except EmptyPage:
+        blogs = paginator.page(paginator.num_pages)
+
     return render_to_response('blog_list.html',
            {"blogs": blogs, "tags": tags, "categories": categories}, context_instance=RequestContext(request))
 
@@ -59,8 +70,9 @@ def blog_search(request):
     if 'search' in request.GET:
         search = request.GET['search']
         blogs = Article.objects.filter(caption__icontains=search).order_by('-publish_time')
-        return render_to_response('blog_filter.html',
-            {"blogs": blogs, "tags": tags}, context_instance=RequestContext(request))
+        categories = Category.objects.all()
+        return render_to_response('blog_search.html',
+            {"blogs": blogs, "tags": tags, "categories": categories}, context_instance=RequestContext(request))
     else:
         blogs = Article.objects.order_by('-id')
         return render_to_response("blog_list.html", {"blogs": blogs, "tags": tags},

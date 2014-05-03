@@ -13,7 +13,7 @@
             <i class="icon-briefcase"></i>  <small>{{ blog.category }}</small>
         </p>
         {% load markup %}
-        <div>{{ blog.content|truncatechars:400|markdown:'codehilite' }} </div>
+        <div>{{ blog.content|truncatechars:200|markdown:'codehilite' }} </div>
         <h5><a href="{% url blog_show blog.id %}"> 阅读全文 >></a></h5>
 
         <div class="row-fluid">
@@ -29,9 +29,10 @@
                 <a href="{% url blog_show blog.id %}#cmt" title="comment"><i class=" icon-comment"></i>{{ comment_count }}</a>
             </div>
         </div>
-    <hr>
+        <hr>
     {% endfor %}
 </article>
+    {% include "page.html" %}
 {% endblock %}
 
 {% block aside %}

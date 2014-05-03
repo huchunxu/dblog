@@ -1,4 +1,4 @@
-{% extends "blog_base.html" %}
+{% extends "blog_list.html" %}
 {% load comments %}
 
 {% block title %} tag search: {{ tag.tag_name }} {% endblock %}
@@ -23,24 +23,4 @@
         <p class="text-info">no result!!</p>
     {% endfor %}
 </article>
-{% endblock %}
-
-{% block aside %}
-    <div class="aside">
-        <div class="pinned">
-            <img src="/static/img/logo.jpg" alt="..." class="img-circle">
-            <h1></h1>
-            <blockquote>
-                <p>怕什么 <strong>真理</strong>无穷，</p>
-                <p>进<strong>一步</strong>有一步的<strong>欢喜</strong>。</p>
-                <small>胡适</small>
-            </blockquote>
-            {% block tags %}
-                <blockquote>
-                    <img src="/static/img/tags.png" alt="..."> <strong style=" font-size: 20px;">标签</strong></span><br>
-                     <a href="{% url blog_filter tag.id %}" class="btn btn-small btn-info">{{ tag }}</a>
-                </blockquote>
-            {% endblock %}
-        </div>
-    </div>
 {% endblock %}
