@@ -10,7 +10,7 @@ def blog_list(request):
     tags = Tag.objects.all()
     categories = Category.objects.all()
 
-    paginator = Paginator(blog_list, 4)
+    paginator = Paginator(blog_list, 5)
     page = request.GET.get('page')
     try:
         blogs = paginator.page(page)

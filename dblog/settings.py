@@ -12,14 +12,25 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+if 'SERVER_SOFTWARE' in os.environ: 
+    from sae.const import (
+        MYSQL_HOST, MYSQL_PORT, MYSQL_USER, MYSQL_PASS, MYSQL_DB
+    )
+else: 
+    MYSQL_HOST = 'localhost'
+    MYSQL_PORT = ''
+    MYSQL_USER = 'root'
+    MYSQL_PASS = 'hcxxxr'
+    MYSQL_DB   = 'blogdb'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',       # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'blogdb',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': 'hcxxxr',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': MYSQL_DB,                      # Or path to database file if using sqlite3.
+        'USER': MYSQL_USER,                      # Not used with sqlite3.
+        'PASSWORD': MYSQL_PASS,                  # Not used with sqlite3.
+        'HOST': MYSQL_HOST,                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': MYSQL_PORT,                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -69,6 +80,7 @@ STATIC_ROOT = ''
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
+ADMIN_MEDIA_PREFIX = '/static/admin/'
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
